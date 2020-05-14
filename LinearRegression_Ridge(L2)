@@ -1,0 +1,15 @@
+from sklearn.linear_model import Ridge
+
+ridge = Ridge(alpha = 10, max_iter=1000).fit(X_train, y_train) # default alpha=1, larger alpha to solve overfit
+
+train_score = ridge.score(X_train, y_train)
+test_score = ridge.score(X_test, y_test)
+
+# plot coefficient magnitude for each feature - to understand feature importance
+plt.plot(ridge.coef_, 's', label="Ridge alpha=10")
+plt.xlabel("Coefficient index")
+plt.ylabel("Coefficient magnitude")
+plt.hlines(0, 0, len(ridge.coef_)) #画0参考线
+plt.ylim(-25, 25)
+plt.legend()
+plt.show()
