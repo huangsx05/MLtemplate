@@ -1,0 +1,16 @@
+from sklearn.linear_model import Lasso
+
+lasso = Lasso(alpha=0.1, max_iter=1000).fit(X_train, y_train) # default alpha=1, larger alpha to solve overfit
+
+train_score = lasso.score(X_train, y_train)
+test_score = lasso.score(X_test, y_test)
+n_feature = np.sum(lasso.coef_ != 0) # Number of features with non-zero coefficient
+
+# plot coefficient magnitude for each feature - to understand feature importance
+plt.plot(ridge.coef_, 's', label="Lasso alpha=0.1")
+plt.xlabel("Coefficient index")
+plt.ylabel("Coefficient magnitude")
+plt.hlines(0, 0, len(ridge.coef_)) #画0参考线
+plt.ylim(-25, 25)
+plt.legend()
+plt.show()
